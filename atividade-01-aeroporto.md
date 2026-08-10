@@ -43,7 +43,7 @@ Dados das bagagens: Peso da mala, Nome do passageiro, Número único de rastreio
 - Rotas mais comuns
 - Horários de voos mais comuns
 
-##3. Dados indispensáveis
+## 3. Dados indispensáveis
 
 - Quantidade de passageiros: sabendo a quantidade de passageiros de um voo é possível verificar questões de overbooking e quais passageiros estavam de fato presentes no voo
 - Voos cancelados: sabendo a quantidade de voos cancelados podemos observar o desempenho das companhias e questões de indenização para os passageiros
@@ -55,3 +55,21 @@ Dados das bagagens: Peso da mala, Nome do passageiro, Número único de rastreio
 - Peso transportado: sabendo o peso que está sendo transportado nas aeronaves é possível calcular o limite de segurança para decolagens e definir o consumo de combustível
 - Quantidade de voos por dia: sabendo a quantidade de voos por dia é possível prever filas e o tempo de espera dos passageiros
 - Rotas mais comuns: sabendo as rotas mais comuns é possível identificar quais companhias aéreas operam nesses trechos além de prever variações nos preços em temporadas
+
+## 4. Perguntas para o cliente
+
+- Como funciona a emissão dos bilhetes e o check-in?
+- Existe um limite para compras de bagagens extras?
+- É possível remarcar um voo onde a responsabilidade foi do cliente?
+- Existe um limite de voos cancelados antes de uma averiguação/punição?
+- Como funciona a questão de indenização de voos cancelados? É algo automático ou o cliente precisa solicitar?
+- Como são feitas as inspeções das bagagens dos passageiros? Existe um padrão a ser seguido ou a escolha pode ser aleatória?
+- Nas alas exclusivas para funcionários, existe um sistema de reconhecimento facial ou alguma senha de acesso?
+- Como os portões de embarque são escolhidos?
+- Como funcionam as conexões entre os voos? Existe algum controle de qual passageiro deve sair e qual deve ficar?
+- Como funciona o controle das aeronaves? (Qual horário partiram, onde estão, qual o horário de chegada)
+
+## 5. Reflexão
+
+- A maior dificuldade que eu encontrei durante a atividade foi não conhecer a área. Para algumas perguntas eu precisei pesquisar para entender como isso funcionava.
+- Não. A pessoa que vai fazer o sistema precisa saber do que é necessário e o que é esperado que esse sistema possua. Como o desenvolvedor não tem experiência na área da aviação, ele nunca vai saber as reais necessidades daquela área, somente quem trabalha sabe o que dificulta o trabalho deles e o que poderia ser feito para contribuir na melhoria do desempenho deles. Por esses motivos que o levantamento inicial é de extrema importância para a criação de um sistema adequado.

@@ -123,12 +123,40 @@ def consultar_nota():
 def listar_notas_aluno():
     print("\n--- LISTAR NOTAS DO ALUNO ---")
 
-    # TODO:
-    # Solicitar o nome do aluno.
-    # Descobrir seu ID.
-    # Procurar todas as notas relacionadas a esse ID.
-
-    print("Funcionalidade a ser implementada.")
+    nome_aluno = input("Nome do aluno: ")
+    aluno = buscar_aluno_por_nome(nome_aluno)
+        
+    if aluno is None:
+        print("Aluno não encontrado.")
+        return
+        
+    id_aluno = aluno[0]
+    nome_completo = aluno[1]
+    
+    encontrou_nota = False
+    
+    try:
+        with open(ARQUIVO_NOTAS, "r", encoding="utf-8") as arquivo:
+        
+            for linha in arquivo:
+                dados = linha.strip().split(";")   
+            
+                id_arquivo = dados[0]
+                disciplina = dados[1]
+                nota = dados[2]
+            
+                if id_arquivo == id_aluno:
+                    if not encontrou_nota:
+                        print(f"\nNotas de: {nome_completo}")
+                    
+                    print(f"- {disciplina}: {nota}")
+                    encontrou_nota = True
+                
+                if not encontrou_nota:            
+                    print("Nenhuma nota para esse aluno.") 
+                
+    except FileNotFoundError:
+        print("Nenhuma nota cadastrada no sistema.")
 
 
 def calcular_media():

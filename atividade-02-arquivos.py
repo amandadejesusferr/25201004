@@ -85,17 +85,39 @@ def consultar_nota():
     print("\n--- CONSULTAR NOTA ---")
 
     nome_aluno = input("Nome do aluno: ")
+    aluno = buscar_aluno_por_nome(nome_aluno)
+    
+    if aluno is None:
+        print("Aluno não encontrado.")
+        return
+    
+    id_aluno = aluno[0]
+    nome_completo = aluno[1]
+    
     disciplina_busca = input("Disciplina: ")
-
-    # TODO:
-    # 1. Buscar o aluno pelo nome.
-    # 2. Obter o ID do aluno.
-    # 3. Abrir o arquivo notas.txt.
-    # 4. Procurar uma nota com o ID do aluno.
-    # 5. Verificar se a disciplina corresponde.
-    # 6. Exibir a nota encontrada.
-
-    print("Funcionalidade a ser implementada.")
+    
+    try:
+        with open(ARQUIVO_NOTAS, "r", encoding="utf-8") as arquivo:
+        
+            for linha in arquivo:
+                dados = linha.strip().split(";")
+        
+                id_arquivo = dados[0]
+                disciplina = dados[1]
+                nota = dados[2]
+        
+                if (
+                    id_arquivo == id_aluno and disciplina.lower() == disciplina_busca.lower()
+                ):
+                    print(f"\nAluno: {nome_completo}")
+                    print(f"\nDisciplina: {disciplina}")
+                    print(f"\nNota: {nota}")
+                    return
+            
+            print("Nota não encontrada para essa disciplina.")
+    
+    except FileNotFoundError:
+        print("Nenhuma nota cadastrada até o momento.")
 
 
 def listar_notas_aluno():

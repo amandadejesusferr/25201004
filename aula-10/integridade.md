@@ -73,15 +73,16 @@ CREATE TABLE IF NOT EXISTS `VOO` (
   `origem` VARCHAR(100) NOT NULL,
   `destino` VARCHAR(100) NOT NULL,
   `dia_horario` DATETIME NOT NULL,
-  `id_aeronave` INT NOT NULL,
+  `id_AERONAVE` INT NOT NULL,
   PRIMARY KEY (`id_VOO`),
-  CONSTRAINT unq_voo_horario UNIQUE (num_voo, dia_horario)
-  CONSTRAINT `fk_TELEFONE_PASSAGEIRO`
-    FOREIGN KEY (`id_PASSAGEIRO`)
-    REFERENCES `PASSAGEIRO` (`id_PASSAGEIRO`)
+  CONSTRAINT unq_voo_horario UNIQUE (num_voo, dia_horario),
+  CONSTRAINT `chk_origem_destino_diferentes` CHECK (`origem` <> `destino`),
+  CONSTRAINT `fk_voo_aeronave`
+    FOREIGN KEY (`id_AERONAVE`)
+    REFERENCES `AERONAVE` (`id_AERONAVE`)
     ON DELETE RESTRICT
     ON UPDATE CASCADE)
-ENGINE = InnoDB;
+    ENGINE = InnoDB;
 ```
 - id_VOO INT NOT NULL AUTO_INCREMENT & PRIMARY KEY (id_VOO): Integridade de Entidade. Garante que cada voo tenha um identificador único
 - num_voo VARCHAR(45) NOT NULL & origem VARCHAR(100) NOT NULL & destino VARCHAR(100) NOT NULL & dia_horario DATETIME NOT NULL: Obrigatoriedade de Preenchimento. Impede cadastros incompletos
@@ -94,25 +95,41 @@ ENGINE = InnoDB;
 - Regra de Unicidade do CPF do PASSAGEIRO: um CPF não pode pertencer a mais de um passageiro. Cláusula UNIQUE no atributo cpf da tabela PASSAGEIRO
 - Regra da Capacidade Mínima da AERONAVE: a capacidade de uma aeronave é obrigatoriamente um valor positivo maior que zero. Restrição de checagem CONSTRAINT chk_capacidade_positiva CHECK (capacidade > 0) na tabela AERONAVE
 - Regra de Agendamento Único de VOO: o mesmo código de voo não pode ser cadastrado mais de uma vez para o mesmo dia e horário. Restrição de unicidade composta CONSTRAINT unq_voo_horario UNIQUE (num_voo, dia_horario) na tabela VOO
-
+- Rota Válida de VOO: o local de origem deve ser diferente do local de destino. Restrição de checagem CONSTRAINT chk_origem_destino_diferentes CHECK (origem <> destino)
+  
 ---
 
 # Testes das regras de integridade
 
-Situação testada:
+Situação testada: Teste da Regra de Unicidade. Cadastrar duas pessoas com o mesmo CPF
 Comando SQL utilizado:
-* Resultado esperado;
-* Resultado obtido.
-
-Exemplo:
-
 ```sql
-INSERT INTO cliente (id_cliente, cpf, nome)
-VALUES (2, '11111111111', 'João');
+INSERT INTO PASSAGEIRO (nome, cpf) VALUES ('Carlos Silva', '12345678901');
+
+INSERT INTO PASSAGEIRO (nome, cpf) VALUES ('Mariana Santos', '12345678901');
 ```
-
-Caso o CPF já esteja cadastrado e exista uma restrição `UNIQUE`, o banco deverá impedir a operação.
-
-O grupo deverá registrar o resultado do teste.
+- Resultado esperado: o SQL deve recusar o cadastro com o mesmo CPF e apresentar erro
+- Resultado obtido: Error Code:1062.Duplicated entry '12345678901' for key 'PASSAGEIRO.cpf_UNIQUE'
 
 ---
+
+Situação testada: Teste da Regra da Capacidade Mínima. Cadastrar uma aeronave com a capacidade <= 0
+Comando SQL utilizado:
+```sql
+INSERT INTO AERONAVE (modelo, capacidade) VALUES ('Boeing 737', 0);
+```
+- Resultado esperado: o SQL deve recusar o cadastro da capacidade e apresentar erro
+- Resultado obtido: Error Code:3819. Check constraint 'chk_capacidade_positiva' is violated
+
+---
+
+Situação testada: Teste da  Rota Válida de VOO. Cadastrar um voo com a origem e o destino iguais
+Comando SQL utilizado:
+```sql
+INSERT INTO AERONAVE (modelo, capacidade) VALUES ('Embraer 195', 110);
+
+INSERT INTO VOO (num_voo, origem, destino, dia_horario, id_AERONAVE) 
+VALUES ('G3-1500', 'Brasília', 'Brasília', '2026-10-15 14:00:00', 1);
+```
+- Resultado esperado: o SQL deve recusar o cadastro do voo e apresentar erro
+- Resultado obtido: Error Code:3819. Check constraint 'chk_origem_destino' is violated

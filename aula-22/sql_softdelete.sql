@@ -2,8 +2,6 @@
 -- Aluno: Amanda de Jesus Ferreira 
 -- Curso: Ciência da Computação 
 -- Banco de dados: bd_aeroporto
--- Descrição: Modelo de gestão aeroportuária
--- Logs de auditoria e triggers
 -- ===========================================
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;

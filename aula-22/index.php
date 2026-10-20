@@ -15,6 +15,12 @@ switch ($acao) {
     case 'excluir':
         $controller->excluir();
         break;
+    case 'lixeira':
+        $controller->lixeira();
+        break;
+    case 'restaurar':
+        $controller->restaurar();
+        break;
     default:
         $controller->listar();
         break;

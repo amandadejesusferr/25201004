@@ -10,7 +10,7 @@ class Database
             $host    = 'localhost';
             $banco   = 'bd_aeroporto';
             $usuario = 'root';
-            $senha   = '';
+            $senha   = 'Am4nd4*1902';
 
             self::$conexao = new PDO(
                 "mysql:host=$host;dbname=$banco;charset=utf8mb4",

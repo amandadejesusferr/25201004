@@ -8,7 +8,7 @@ class Voo
 
     public function __construct()
     {
-        $this->db = Database::getConnection();
+        $this->db = Database::conectar();
     }
 
     public function listar(): array

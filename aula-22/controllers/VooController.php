@@ -14,7 +14,7 @@ class VooController
     public function listar(): void
     {
         $voos = $this->voo->listar();
-        require __DIR__ . '/../views/voos/listar.php';
+        require __DIR__ . '/../views/VOOS/listar.php';
     }
 
     public function salvar(): void
@@ -41,7 +41,7 @@ class VooController
     public function lixeira(): void
     {
         $voosExcluidos = $this->voo->listarExcluidos();
-        require __DIR__ . '/../views/voos/lixeira.php';
+        require __DIR__ . '/../views/VOOS/lixeira.php';
     }
 
     public function restaurar(): void

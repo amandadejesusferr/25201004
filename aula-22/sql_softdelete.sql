@@ -182,7 +182,17 @@ INSERT INTO AERONAVE (modelo, capacidade, status) VALUES ('Boeing 737', 150, 'DI
 -- INSERIR VOO VÁLIDO
 
 INSERT INTO VOO (num_voo, origem, destino, data_partida, data_chegada, id_AERONAVE)
-VALUES ('VOO-101', 'BSB', 'GRU', '2026-12-10 10:00:00', '2026-12-10 15:00:00', 1);
+VALUES ('VOO-101', 'Brasília (BSB)', 'São Paulo (GRU)', '2026-12-10 10:00:00', '2026-12-10 15:00:00', 1),
+('VOO-101', 'Brasília (BSB)', 'São Paulo (GRU)', '2026-12-10 08:00:00', '2026-12-10 09:45:00', 2),
+('VOO-102', 'São Paulo (GRU)', 'Rio de Janeiro (GIG)', '2026-12-10 12:30:00', '2026-12-10 13:40:00', 3),
+('VOO-103', 'Rio de Janeiro (SDU)', 'Belo Horizonte (CNF)', '2026-12-11 07:15:00', '2026-12-11 08:20:00', 4),
+('VOO-104', 'Brasília (BSB)', 'Salvador (SSA)', '2026-12-11 14:00:00', '2026-12-11 16:10:00', 5),
+('VOO-105', 'Salvador (SSA)', 'Recife (REC)', '2026-12-12 09:00:00', '2026-12-12 10:15:00', 6),
+('VOO-106', 'Brasília (BSB)', 'Miami (MIA)', '2026-12-13 22:00:00', '2026-12-14 06:00:00', 7),
+('VOO-107', 'São Paulo (GRU)', 'Lisboa (LIS)', '2026-12-14 18:30:00', '2026-12-15 07:00:00', 8),
+('VOO-108', 'Curitiba (CWB)', 'Porto Alegre (POA)', '2026-12-15 11:00:00', '2026-12-15 12:10:00', 9),
+('VOO-109', 'Fortaleza (FOR)', 'Manaus (MAO)', '2026-12-16 13:20:00', '2026-12-16 16:00:00', 10),
+('VOO-110', 'Brasília (BSB)', 'Florianópolis (FLN)', '2026-12-17 15:45:00', '2026-12-17 17:35:00', 11);
 
 -- TESTAR SINCRONIZAÇÃO
 

@@ -1,4 +1,6 @@
-Quais privilégios aparecem no SHOW GRANTS?
+## Prática: Privilégios no projeto do aeroporto
+
+#### Quais privilégios aparecem no SHOW GRANTS?
 
 GRANT USAGE ON *.* TO `app_aeroporto`@`localhost`
 
